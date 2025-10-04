@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaliAx ET Solution IGHC - Technology & Engineering Solutions</title>
+<style>
+/* RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary: #1E3346;
+    --primary-dark: #132230;
+    --primary-light: #2A4A63;
+    --secondary: #00aaff;
+    --secondary-light: #4DC8FF;
+    --accent: #FF6B35;
+    --light: #f9f9f9;
+    --dark: #333;
+    --gray: #555;
+    --light-gray: #eaeaea;
+    --white: #fff;
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
+header {
+    background-color: var(--primary);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;     /* vertical center logo and nav */
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;   /* vertically center image and text */
+    gap: 10px;             /* space between image and text */
+}
+
+.logo img {
+    display: block;
+    height: 40px;          /* adjust as needed */
+    width: auto;
+}
+
+.logo h1 {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;             /* remove default margin */
+}
+
+.logo span {
+    color: var(--secondary);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 25px;
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--white);
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 5px 0;
+}
+
+nav ul li a:hover {
+    color: var(--secondary);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--secondary);
+    transition: var(--transition);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+#nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--secondary);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: var(--secondary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--white);
+}
+
+.btn-outline:hover {
+    background-color: var(--white);
+    color: var(--primary);
+}
+
+/* SECTIONS */
+section {
+    padding: 100px 20px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: var(--secondary);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--gray);
+    font-size: 18px;
+}
+
+/* FLOATING BUTTONS */
+.floating-btns {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.floating-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: var(--transition);
+    border: none;
+}
+
+.floating-btn:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.floating-btn.chat {
+    background-color: var(--secondary);
+}
+
+.floating-btn.chat:hover {
+    background-color: var(--secondary-light);
+}
+
+.floating-btn.active {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* POPUP STYLES */
+.popup {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 1000;
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.popup.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-header {
+    padding: 15px 20px;
+    background-color: var(--primary);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+}
+
+.popup-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.popup-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.popup-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.popup-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.popup.minimized {
+    height: 50px;
+    width: 200px;
+}
+
+.popup.minimized .popup-content {
+    display: none;
+}
+
+/* SOCIAL MEDIA POPUP */
+#social-popup {
+    width: 300px;
+}
+
+.social-content {
+    padding: 20px;
+}
+
+.social-icons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    border-radius: 8px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.social-item:hover {
+    background-color: var(--light-gray);
+    transform: translateY(-3px);
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--white);
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.twitter {
+    background-color: #1da1f2;
+}
+
+.linkedin {
+    background-color: #0077b5;
+}
+
+.instagram {
+    background-color: #e4405f;
+}
+
+.social-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+/* CHATBOT POPUP */
+#chatbot-popup {
+    width: 350px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatbot-header {
+    padding: 15px 20px;
+    background-color: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chatbot-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.chatbot-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4ade80;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 350px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 15px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    animation: messageSlide 0.3s ease;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: var(--light-gray);
+    border-bottom-left-radius: 5px;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: var(--secondary);
+    color: var(--white);
+    border-bottom-right-radius: 5px;
+}
+
+.message-time {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.quick-reply {
+    background-color: var(--white);
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.quick-reply:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+/* CHAT INPUT AREA - FIXED */
+.chat-input-area {
+    padding: 15px;
+    border-top: 1px solid var(--light-gray);
+    background: var(--white);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.chat-input-container {
+    flex: 1;
+    display: flex;
+    background: var(--light-gray);
+    border-radius: 25px;
+    padding: 5px;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.chat-input-container:focus-within {
+    border-color: var(--secondary);
+    background: var(--white);
+}
+
+.chat-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+    border-radius: 25px;
+}
+
+.send-btn {
+    background-color: var(--secondary);
+    color: var(--white);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.send-btn:hover {
+    background-color: var(--secondary-light);
+    transform: scale(1.05);
+}
+
+.send-btn:disabled {
+    background-color: var(--light-gray);
+    color: var(--gray);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.typing-indicator {
+    display: none;
+    padding: 10px 15px;
+    align-self: flex-start;
+}
+
+.typing-indicator.active {
+    display: flex;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--gray);
+    animation: typingAnimation 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingAnimation {
+    0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 40px 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--secondary);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    transition: var(--transition);
+}
+
+.footer-column ul li a:hover {
+    color: var(--secondary);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes messageSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE STYLES */
+@media screen and (max-width: 768px) {
+    .header-container {
+        padding: 0 15px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        background-color: var(--primary);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 250px;
+        padding: 20px;
+        display: none;
+        box-shadow: -5px 5px 15px rgba(0,0,0,0.1);
+        border-radius: 0 0 0 10px;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    #nav-toggle {
+        display: block;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    section {
+        padding: 70px 20px;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .popup {
+        width: calc(100vw - 40px);
+        right: 20px;
+        left: 20px;
+    }
+    
+    #chatbot-popup {
+        height: 70vh;
+    }
+    
+    .floating-btns {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .floating-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero {
+        padding: 80px 20px;
+    }
+    
+    .hero h2 {
+        font-size: 28px;
+    }
+    
+    .section-header h2 {
+        font-size: 24px;
+    }
+    
+    .social-icons {
+        grid-template-columns: 1fr;
+    }
+    
+    .chat-input-area {
+        padding: 10px;
+    }
+    
+    .chat-input {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo">
+    <img src="laliax.png" alt="LaliAx ET Solution IGHC">
+    <h1>LaliAx ET Solution <span>IGHC</span></h1>
+</div>
+
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#agent">Agent</a></li>
+                <li><a href="#partner">Partner</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+            <button id="nav-toggle">☰</button>
+        </nav>
+    </div>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h2>Innovative Technology & Engineering Solutions</h2>
+        <p>We provide cutting-edge technology and engineering solutions to empower businesses worldwide with advanced tools and expert consultation.</p>
+        <div class="hero-buttons">
+            <a href="#services" class="btn">Our Services</a>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <div class="section-header">
+            <h2>About Us</h2>
+            <p>We specialize in technological engineering, consulting, innovation, and advanced technology solutions.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>LaliAx ET Solution IGHC is a leading provider of innovative technology and engineering solutions. Our mission is to deliver smart, reliable, and efficient solutions for modern challenges.</p>
+                <p>With a team of experienced engineers and technology experts, we help businesses transform their operations through cutting-edge solutions tailored to their specific needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>We specialize in technological engineering, consulting, innovation, and advanced technology solutions.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>LaliAx ET Solution IGHC is a leading provider of innovative technology and engineering solutions. Our mission is to deliver smart, reliable, and efficient solutions for modern challenges.</p>
+                <p>With a team of experienced engineers and technology experts, we help businesses transform their operations through cutting-edge solutions tailored to their specific needs.Lorem</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="agent">
+    <div class="container">
+        <div class="section-header">
+            <h2>Agent with Us</h2>
+            <p>We specialize in technological engineering, consulting, innovation, and advanced technology solutions.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>LaliAx ET Solution IGHC is a leading provider of innovative technology and engineering solutions. Our mission is to deliver smart, reliable, and efficient solutions for modern challenges.</p>
+                <p>With a team of experienced engineers and technology experts, we help businesses transform their operations through cutting-edge solutions tailored to their specific needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="partner">
+    <div class="container">
+        <div class="section-header">
+            <h2>Partner Us</h2>
+            <p>We specialize in technological engineering, consulting, innovation, and advanced technology solutions.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>LaliAx ET Solution IGHC is a leading provider of innovative technology and engineering solutions. Our mission is to deliver smart, reliable, and efficient solutions for modern challenges.</p>
+                <p>With a team of experienced engineers and technology experts, we help businesses transform their operations through cutting-edge solutions tailored to their specific needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>We specialize in technological engineering, consulting, innovation, and advanced technology solutions.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>LaliAx ET Solution IGHC is a leading provider of innovative technology and engineering solutions. Our mission is to deliver smart, reliable, and efficient solutions for modern challenges.</p>
+                <p>With a team of experienced engineers and technology experts, we help businesses transform their operations through cutting-edge solutions tailored to their specific needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="login">
+    <div class="container">
+        <div class="section-header">
+            <h2>Login</h2>
+            <p>We specialize in technological engineering, consulting, innovation, and advanced technology solutions.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>LaliAx ET Solution IGHC is a leading provider of innovative technology and engineering solutions. Our mission is to deliver smart, reliable, and efficient solutions for modern challenges.</p>
+                <p>With a team of experienced engineers and technology experts, we help businesses transform their operations through cutting-edge solutions tailored to their specific needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FLOATING BUTTONS -->
+<div class="floating-btns">
+    <button class="floating-btn social" id="social-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+        </svg>
+    </button>
+    <button class="floating-btn chat" id="chatbot-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+</div>
+
+<!-- SOCIAL MEDIA POPUP -->
+<div id="social-popup" class="popup">
+    <div class="popup-header">
+        <h3>Follow Us</h3>
+        <div class="popup-controls">
+            <button class="popup-btn minimize-btn" title="Minimize">−</button>
+            <button class="popup-btn close-btn" title="Close">×</button>
+        </div>
+    </div>
+    <div class="popup-content">
+        <div class="social-content">
+            <p>Stay connected with us on social media for the latest updates and news.</p>
+            <div class="social-icons">
+                <div class="social-item">
+                    <div class="social-icon facebook">f</div>
+                    <span>Facebook</span>
+                </div>
+                <div class="social-item">
+                    <div class="social-icon twitter">t</div>
+                    <span>Twitter</span>
+                </div>
+                <div class="social-item">
+                    <div class="social-icon linkedin">in</div>
+                    <span>LinkedIn</span>
+                </div>
+                <div class="social-item">
+                    <div class="social-icon instagram">ig</div>
+                    <span>Instagram</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHATBOT POPUP -->
+<div id="chatbot-popup" class="popup">
+    <div class="popup-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="chatbot-avatar">LA</div>
+            <div>
+                <h3>LaliAx Support</h3>
+                <div class="chatbot-status">
+                    <div class="status-dot"></div>
+                    <span>Online</span>
+                </div>
+            </div>
+        </div>
+        <div class="popup-controls">
+            <button class="popup-btn minimize-btn" title="Minimize">−</button>
+            <button class="popup-btn close-btn" title="Close">×</button>
+        </div>
+    </div>
+    <div class="popup-content">
+        <div class="chatbot-content">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    <div>Hello! I'm LaliAx Assistant. I'm here to help you with information about our services, technical support, or becoming an agent. How can I assist you today?</div>
+                    <div class="message-time">Just now</div>
+                    <div class="quick-replies">
+                        <div class="quick-reply" data-message="Tell me about your services">Our Services</div>
+                        <div class="quick-reply" data-message="I need technical support">Technical Support</div>
+                        <div class="quick-reply" data-message="How to become an agent">Become an Agent</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TYPING INDICATOR -->
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            
+            <!-- CHAT INPUT AREA - FIXED AT BOTTOM -->
+            <div class="chat-input-area">
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" id="chat-input" placeholder="Type your message here..." maxlength="500">
+                </div>
+                <button class="send-btn" id="send-btn" title="Send message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>LaliAx ET Solution</h3>
+            <p>Providing innovative technology and engineering solutions to empower businesses worldwide.</p>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Contact Info</h3>
+            <ul>
+                <li>1000 Friendship Avenue, Addis Ababa City</li>
+                <li>+251 97 604 4032</li>
+                <li>info@laliaxet.com</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 LaliAx ET Solution IGHC. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Toggle mobile navigation
+    const navToggle = document.getElementById('nav-toggle');
+    const navList = document.getElementById('nav-list');
+    
+    navToggle.addEventListener('click', () => {
+        navList.classList.toggle('show');
+    });
+
+    // Close mobile nav when clicking on a link
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('show');
+        });
+    });
+
+    // Popup Management
+    const chatBtn = document.getElementById('chatbot-btn');
+    const chatPopup = document.getElementById('chatbot-popup');
+    const socialBtn = document.getElementById('social-btn');
+    const socialPopup = document.getElementById('social-popup');
+    const minimizeButtons = document.querySelectorAll('.minimize-btn');
+    const closeButtons = document.querySelectorAll('.close-btn');
+    
+    let activePopup = null;
+
+    // Toggle popups
+    chatBtn.addEventListener('click', () => {
+        if (activePopup === chatPopup) {
+            chatPopup.classList.remove('active');
+            chatBtn.classList.remove('active');
+            activePopup = null;
+        } else {
+            // Close other popup if open
+            if (activePopup) {
+                activePopup.classList.remove('active');
+                document.querySelector('.floating-btn.active')?.classList.remove('active');
+            }
+            
+            chatPopup.classList.add('active');
+            chatBtn.classList.add('active');
+            activePopup = chatPopup;
+            socialPopup.classList.remove('active');
+            
+            // Focus on input when opening chat
+            setTimeout(() => {
+                document.getElementById('chat-input').focus();
+            }, 300);
+        }
+    });
+
+    socialBtn.addEventListener('click', () => {
+        if (activePopup === socialPopup) {
+            socialPopup.classList.remove('active');
+            socialBtn.classList.remove('active');
+            activePopup = null;
+        } else {
+            // Close other popup if open
+            if (activePopup) {
+                activePopup.classList.remove('active');
+                document.querySelector('.floating-btn.active')?.classList.remove('active');
+            }
+            
+            socialPopup.classList.add('active');
+            socialBtn.classList.add('active');
+            activePopup = socialPopup;
+            chatPopup.classList.remove('active');
+        }
+    });
+
+    // Minimize functionality
+    minimizeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const popup = btn.closest('.popup');
+            popup.classList.toggle('minimized');
+            
+            // Update button text
+            if (popup.classList.contains('minimized')) {
+                btn.textContent = '+';
+                btn.title = 'Maximize';
+            } else {
+                btn.textContent = '−';
+                btn.title = 'Minimize';
+                
+                // Focus on input when maximizing chat
+                if (popup === chatPopup) {
+                    setTimeout(() => {
+                        document.getElementById('chat-input').focus();
+                    }, 300);
+                }
+            }
+        });
+    });
+
+    // Close functionality
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const popup = btn.closest('.popup');
+            popup.classList.remove('active');
+            popup.classList.remove('minimized');
+            
+            // Reset minimize button
+            const minimizeBtn = popup.querySelector('.minimize-btn');
+            minimizeBtn.textContent = '−';
+            minimizeBtn.title = 'Minimize';
+            
+            // Remove active class from button
+            if (popup === chatPopup) {
+                chatBtn.classList.remove('active');
+            } else if (popup === socialPopup) {
+                socialBtn.classList.remove('active');
+            }
+            
+            activePopup = null;
+        });
+    });
+
+    // Close popups when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.popup') && !e.target.closest('.floating-btn')) {
+            chatPopup.classList.remove('active');
+            socialPopup.classList.remove('active');
+            chatBtn.classList.remove('active');
+            socialBtn.classList.remove('active');
+            activePopup = null;
+        }
+    });
+
+    // CHATBOT FUNCTIONALITY
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const typingIndicator = document.getElementById('typing-indicator');
+    
+    // Chatbot responses with more detailed information
+    const botResponses = {
+        "hello": "Hello! Welcome to LaliAx ET Solution. I'm here to help you with information about our technology and engineering services. How can I assist you today?",
+        "hi": "Hi there! I'm the LaliAx Assistant. I can help you with information about our services, technical support, or becoming an agent. What would you like to know?",
+        "services": "We offer comprehensive technology and engineering services:\n\n• **Technological Engineering** - Custom software and hardware solutions\n• **Engineering Consultation** - Expert advice for your projects\n• **Innovation Solutions** - Cutting-edge technology implementation\n• **Technology Implementation** - Seamless integration services\n\nWhich service are you most interested in?",
+        "technological engineering": "Our **Technological Engineering** services include:\n• Custom software development\n• Hardware design and implementation\n• System architecture planning\n• IoT solutions\n• AI and machine learning integration\n\nWould you like to schedule a consultation?",
+        "engineering consultation": "**Engineering Consultation** services provide:\n• Project feasibility analysis\n• Technical architecture review\n• Best practices guidance\n• Technology stack recommendations\n• Implementation roadmaps\n\nOur experts are ready to help with your specific needs!",
+        "technical support": "For **Technical Support**, we offer:\n• 24/7 assistance for critical issues\n• Remote troubleshooting\n• On-site support when needed\n• Regular maintenance services\n• System optimization\n\nPlease provide your contact details and we'll reach out immediately!",
+        "agent": "To **Become an Agent**, you can:\n• Apply through our online portal\n• Join our partner network\n• Access training resources\n• Receive marketing support\n• Get technical assistance\n\nWould you like me to send you the application link?",
+        "contact": "You can reach us through:\n• 📧 Email: info@laliaxet.com\n• 📞 Phone: +123 456 7890\n• 📍 Office: 123 Tech Avenue, Innovation City\n• 🌐 Website: www.laliaxet.com\n\nOur team is available Monday-Friday, 9AM-6PM.",
+        "default": "I'm here to help with information about LaliAx ET Solution. You can ask me about:\n• Our services and solutions\n• Technical support\n• Becoming an agent\n• Contact information\n\nHow can I assist you today?"
+    };
+
+    // Send message function
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message === '') return;
+        
+        // Add user message
+        addMessage(message, 'user');
+        chatInput.value = '';
+        sendBtn.disabled = true;
+        
+        // Show typing indicator
+        typingIndicator.classList.add('active');
+        
+        // Simulate bot thinking and response
+        setTimeout(() => {
+            typingIndicator.classList.remove('active');
+            
+            let response = botResponses.default;
+            const lowerMessage = message.toLowerCase();
+            
+            // Find the best matching response
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                response = botResponses.hello;
+            } else if (lowerMessage.includes('service')) {
+                if (lowerMessage.includes('technological') || lowerMessage.includes('engineering')) {
+                    response = botResponses['technological engineering'];
+                } else if (lowerMessage.includes('consult')) {
+                    response = botResponses['engineering consultation'];
+                } else {
+                    response = botResponses.services;
+                }
+            } else if (lowerMessage.includes('support') || lowerMessage.includes('help') || lowerMessage.includes('issue')) {
+                response = botResponses['technical support'];
+            } else if (lowerMessage.includes('agent') || lowerMessage.includes('partner') || lowerMessage.includes('represent')) {
+                response = botResponses.agent;
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('address')) {
+                response = botResponses.contact;
+            }
+            
+            addMessage(response, 'bot');
+            sendBtn.disabled = false;
+        }, 1500 + Math.random() * 1000); // Random delay between 1.5-2.5 seconds
+    }
+
+    // Add message to chat
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        
+        // Format text with line breaks
+        const formattedText = text.replace(/\n/g, '<br>');
+        const messageText = document.createElement('div');
+        messageText.innerHTML = formattedText;
+        messageDiv.appendChild(messageText);
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        messageDiv.appendChild(timeDiv);
+        
+        // Add quick replies for bot messages
+        if (sender === 'bot') {
+            const quickReplies = document.createElement('div');
+            quickReplies.className = 'quick-replies';
+            
+            if (text.includes('services')) {
+                quickReplies.innerHTML = `
+                    <div class="quick-reply" data-message="Technological Engineering">Tech Engineering</div>
+                    <div class="quick-reply" data-message="Engineering Consultation">Consultation</div>
+                    <div class="quick-reply" data-message="Technical Support">Support</div>
+                `;
+            } else if (text.includes('agent')) {
+                quickReplies.innerHTML = `
+                    <div class="quick-reply" data-message="How to apply as agent">Apply Now</div>
+                    <div class="quick-reply" data-message="What are the benefits">Benefits</div>
+                `;
+            } else {
+                quickReplies.innerHTML = `
+                    <div class="quick-reply" data-message="Our services">Services</div>
+                    <div class="quick-reply" data-message="Technical support">Support</div>
+                    <div class="quick-reply" data-message="Contact information">Contact</div>
+                `;
+            }
+            
+            messageDiv.appendChild(quickReplies);
+        }
+        
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // Add event listeners to quick replies
+        if (sender === 'bot') {
+            setTimeout(() => {
+                const quickReplyButtons = messageDiv.querySelectorAll('.quick-reply');
+                quickReplyButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const message = button.getAttribute('data-message');
+                        addMessage(message, 'user');
+                        
+                        // Auto-respond to quick replies
+                        setTimeout(() => {
+                            typingIndicator.classList.add('active');
+                            setTimeout(() => {
+                                typingIndicator.classList.remove('active');
+                                let response = botResponses.default;
+                                
+                                if (message.includes('Engineering')) response = botResponses['technological engineering'];
+                                else if (message.includes('Consultation')) response = botResponses['engineering consultation'];
+                                else if (message.includes('Support')) response = botResponses['technical support'];
+                                else if (message.includes('Apply')) response = "Great! I'll send you the application link. Please check your email in the next few minutes.";
+                                else if (message.includes('Benefits')) response = "As a LaliAx agent, you'll receive:\n• Competitive commission rates\n• Comprehensive training\n• Marketing materials\n• Technical support\n• Exclusive partner benefits";
+                                else if (message.includes('Contact')) response = botResponses.contact;
+                                
+                                addMessage(response, 'bot');
+                            }, 1500);
+                        }, 500);
+                    });
+                });
+            }, 100);
+        }
+    }
+
+    // Event listeners for sending messages
+    sendBtn.addEventListener('click', sendMessage);
+    
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    // Enable/disable send button based on input
+    chatInput.addEventListener('input', () => {
+        sendBtn.disabled = chatInput.value.trim() === '';
+    });
+
+    // Quick reply functionality
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('quick-reply')) {
+            const message = e.target.getAttribute('data-message');
+            addMessage(message, 'user');
+            
+            // Auto-respond to quick replies
+            setTimeout(() => {
+                typingIndicator.classList.add('active');
+                setTimeout(() => {
+                    typingIndicator.classList.remove('active');
+                    let response = botResponses.default;
+                    
+                    if (message.includes('Engineering')) response = botResponses['technological engineering'];
+                    else if (message.includes('Consultation')) response = botResponses['engineering consultation'];
+                    else if (message.includes('Support')) response = botResponses['technical support'];
+                    else if (message.includes('Apply')) response = "Great! I'll send you the application link. Please check your email in the next few minutes.";
+                    else if (message.includes('Benefits')) response = "As a LaliAx agent, you'll receive:\n• Competitive commission rates\n• Comprehensive training\n• Marketing materials\n• Technical support\n• Exclusive partner benefits";
+                    else if (message.includes('Contact')) response = botResponses.contact;
+                    
+                    addMessage(response, 'bot');
+                }, 1500);
+            }, 500);
+        }
+    });
+
+    // Make popups draggable
+    function makeDraggable(element) {
+        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        const header = element.querySelector('.popup-header');
+        
+        if (header) {
+            header.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // Get the mouse cursor position at startup
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // Call a function whenever the cursor moves
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // Calculate the new cursor position
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // Set the element's new position
+            element.style.top = (element.offsetTop - pos2) + "px";
+            element.style.bottom = "auto";
+            element.style.right = "auto";
+            element.style.left = (element.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            // Stop moving when mouse button is released
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+    // Make both popups draggable
+    makeDraggable(chatPopup);
+    makeDraggable(socialPopup);
+
+    // Initialize send button state
+    sendBtn.disabled = true;
+</script>
+
+</body>
+</html>
